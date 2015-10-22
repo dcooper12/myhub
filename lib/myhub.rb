@@ -20,13 +20,13 @@ module Myhub
     post "/issue/reopen/:id" do
       api = Github.new
       api.reopen_issue(params["id"].to_i)
-      "Cool cool cool"
+      redirect to("/")
     end
 
     post "/issue/close/:id" do
       api = Github.new
       api.close_issue(params["id"].to_i)
-      "Cool cool cool"
+      redirect to("/")
     end
 
     run! if app_file == $0

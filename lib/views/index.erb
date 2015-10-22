@@ -9,20 +9,22 @@
 
 		<p>Now you can access MyHub<p>
 		<ul>
+  	 <% issues.each do |issue| %>
+  	  <li>
+  	   <p><%= issue["title"] %></p>
+       <p><%= issue["number"] %></p>
 
-	<% issues.each do |issue| %>
-	  <li>
-	<% if issue["state"] == "open" %>
-		<form action="/issue/close/<%= issue[:number] %>" method="post">
-        <input type="Submit" value="Close"></form>
-	<% elsif issue["state"] == "closed" %>
-		<form action="/issue/reopen/<%= issue[:number] %>" method="post">
-         <input type="Submit" value="Reopen"></form>
-
-		<% end %>
-		<% end %>
-
-	    </li>
+  		  <% if issue["state"] == "open" %>
+  		    <form action="/issue/close/<%= issue["number"] %>" method="post">
+            <input type="Submit" value="Close">
+          </form>
+  	    <% elsif issue["state"] == "closed" %>
+  		    <form action="/issue/reopen/<%= issue["number"] %>" method="post">
+            <input type="Submit" value="Reopen">
+          </form>
+  		  <% end %>
+      </li>
+  		<% end %>
 		</ul>
 	</body>
 </head>

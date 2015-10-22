@@ -15,12 +15,12 @@ module Myhub
       my_issues = Github.get("/orgs/TIY-ATL-ROR-2015-Sep/issues", headers: @headers, query: { state: "all"})
     end
 
-    def close_issue(owner, repos, number)
-      Github.patch("/repos/:owner/:repos/issues/:number", headers:  @headers, query: { state: "close"})
+    def close_issue(number)
+      Github.patch("/repos/TIY-ATL-ROR-2015-Sep/assignments/issues/#{number}", headers:  @headers, body: { state: "closed"}.to_json)
     end
 
-    def open_issue(owner, repos, number)
-      Github.patch("/repos/:owner/:repos/issues/:number", headers:  @headers, query: { state: "open"})
+    def reopen_issue(number)
+      Github.patch("/repos/TIY-ATL-ROR-2015-Sep/assignments/issues/#{number}", headers:  @headers, body: { state: "open"}.to_json)
     end
   end
 end
