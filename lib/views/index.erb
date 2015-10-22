@@ -5,30 +5,24 @@
 	<link rel="stylesheet" href="main.css">
 	</head>
 	<body>
-		<h2>All my issues</h2>
+		<h2>All my Issues</h2>
 
 		<p>Now you can access MyHub<p>
 		<ul>
 
-<% issues.each do |issue| %>
-	<p> Issue: <%= issue["number"] %></p>
-<% end %>
-	<li>
-
-
 	<% issues.each do |issue| %>
-	<% if issue[:state] == "open" %>
+	  <li>
+	<% if issue["state"] == "open" %>
 		<form action="/issue/close/<%= issue[:number] %>" method="post">
-        <input type="submit" value="Close">
-	<% elsif issue[:state] == "closed" %>
+        <input type="Submit" value="Close"></form>
+	<% elsif issue["state"] == "closed" %>
 		<form action="/issue/reopen/<%= issue[:number] %>" method="post">
-         <input type="submit" value="Reopen">
+         <input type="Submit" value="Reopen"></form>
 
 		<% end %>
+		<% end %>
 
-
-				</form>
-        	<% end %>
+	    </li>
 		</ul>
 	</body>
 </head>
