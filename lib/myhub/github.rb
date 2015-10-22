@@ -10,5 +10,17 @@ module Myhub
         "User-Agent"     => "HTTParty"
       }
     end
+
+    def issues
+      my_issues = Github.get("/orgs/TIY-ATL-ROR-2015-Sep/issues", headers: @headers, query: { state: "all"})
+    end
+
+    def close_issue(owner, repos, number)
+      Github.patch("/repos/:owner/:repos/issues/:number", headers:  @headers, query: { state: "close"})
+    end
+
+    def open_issue(owner, repos, number)
+      Github.patch("/repos/:owner/:repos/issues/:number", headers:  @headers, query: { state: "open"})
+    end
   end
 end

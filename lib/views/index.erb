@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>MyHub --- Issues</title>
+	<link rel="stylesheet" href="main.css">
+	</head>
+	<body>
+		<h2>All my issues</h2>
+
+		<p>Now you can access MyHub<p>
+		<ul>
+
+<% issues.each do |issue| %>
+	<p> Issue: <%= issue["number"] %></p>
+<% end %>
+	<li>
+
+
+	<% issues.each do |issue| %>
+	<% if issue[:state] == "open" %>
+		<form action="/issue/close/<%= issue[:number] %>" method="post">
+        <input type="submit" value="Close">
+	<% elsif issue[:state] == "closed" %>
+		<form action="/issue/reopen/<%= issue[:number] %>" method="post">
+         <input type="submit" value="Reopen">
+
+		<% end %>
+
+
+				</form>
+        	<% end %>
+		</ul>
+	</body>
+</head>
+</html>
+
